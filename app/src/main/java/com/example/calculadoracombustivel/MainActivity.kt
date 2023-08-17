@@ -7,8 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.BottomAppBar
+import androidx.compose.material.BottomNavigation
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.MaterialTheme
@@ -42,7 +45,7 @@ class MainActivity : ComponentActivity() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    backgroundColor = Color.Black,
+                    backgroundColor = Color.Blue,
                     title = {
                         Text(
                             text = "Calculadora de Combustível",
@@ -52,15 +55,32 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 )
+            },
+            bottomBar = {
+                BottomAppBar(
+                    backgroundColor = Color.Red,
+
+
+                ) {
+                    BottomNavigation {
+
+                    }
+
+                }
             }
+
+
+
 
 
         ) {
             Column(
                 modifier = Modifier
                     .background(Color.Black)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,
+
 
 
                 ) {
@@ -74,6 +94,7 @@ class MainActivity : ComponentActivity() {
             }
 
         }
+
     }
 
     @Preview

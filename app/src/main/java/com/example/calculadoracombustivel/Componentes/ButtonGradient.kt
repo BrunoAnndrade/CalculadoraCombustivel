@@ -31,7 +31,6 @@ fun GradientButton(
         onClick,
         modifier = Modifier
             .fillMaxWidth()
-
             .padding(20.dp)
             .background(
                 Brush.horizontalGradient(
