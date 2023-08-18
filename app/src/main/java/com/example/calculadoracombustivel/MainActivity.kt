@@ -14,6 +14,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -64,7 +65,7 @@ class MainActivity : ComponentActivity() {
 
 
                 ) {
-
+                TextField(value = , onValueChange = )
                 Text(text = "texto1",color = Color.White)
                 Text(text = "texto2",color = Color.White)
 
