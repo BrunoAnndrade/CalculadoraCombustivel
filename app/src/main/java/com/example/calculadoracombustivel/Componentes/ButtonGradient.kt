@@ -59,3 +59,9 @@ fun GradientButton(
 
 }
 
+@Preview
+@Composable
+fun GradientButtonPreview(){
+
+
+}
