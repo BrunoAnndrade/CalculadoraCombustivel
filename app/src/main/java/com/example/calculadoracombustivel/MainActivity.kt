@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.Button
@@ -266,6 +267,21 @@ class MainActivity : ComponentActivity() {
             }
 
         }
+    }
+
+    @Composable
+    fun DialogCustoCompose() {
+        AlertDialog(
+            onDismissRequest = {
+
+            },
+            confirmButton = {
+
+            },
+            title = {
+                Text(text = "Seu resultado é:")
+            }
+        )
     }
 
     @Preview
