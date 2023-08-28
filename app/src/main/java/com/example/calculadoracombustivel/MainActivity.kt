@@ -87,7 +87,6 @@ class MainActivity : ComponentActivity() {
                 BottomNavigation {
 
                 }
-
             }
         }
 
@@ -248,8 +247,18 @@ class MainActivity : ComponentActivity() {
 
                 Button(
                     onClick = {
-                    val result = calcularConsumo(consumoVeiculo, combustivel)
-                    resultState.value = result },
+                        val result = calcularConsumo(consumoVeiculo, combustivel)
+                        resultState.value = result
+
+
+                        DialogCustoCompose(resultState.value){}
+                            
+
+
+                            
+                        
+
+                     },
                     shape = ShapeButton.large,
                     colors = ButtonDefaults.buttonColors(RoxoClaro)
 
@@ -267,22 +276,17 @@ class MainActivity : ComponentActivity() {
             }
 
         }
+
+
     }
 
-    @Composable
-    fun DialogCustoCompose() {
-        AlertDialog(
-            onDismissRequest = {
-
-            },
-            confirmButton = {
-
-            },
-            title = {
-                Text(text = "Seu resultado é:")
-            }
-        )
+    private fun calcularConsumo(consumoVeiculo: String, combustivel: String): Double {
+        val consumoDouble = consumoVeiculo.toDoubleOrNull() ?: 0.0
+        val combustivelDouble = combustivel.toDoubleOrNull() ?: 0.0
+        return consumoDouble * combustivelDouble
     }
+
+
 
     @Preview
     @Composable
@@ -291,10 +295,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private fun calcularConsumo(consumoVeiculo: String, combustivel: String): Double {
-    val consumoDouble = consumoVeiculo.toDoubleOrNull() ?: 0.0
-    val combustivelDouble = combustivel.toDoubleOrNull() ?: 0.0
-    return consumoDouble * combustivelDouble
-}
+
 
 
