@@ -17,10 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AlertDialog
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigation
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
@@ -28,6 +25,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,7 +33,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -53,7 +50,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            Gastos()
         }
     }
 
@@ -61,10 +58,13 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Gastos() {
 
+        val showDialog = remember { mutableStateOf(false) }
+
         var consumoVeiculo by remember { mutableStateOf("") }
         var combustivel by remember { mutableStateOf("") }
         var precoCombustivel by remember { mutableStateOf("") }
-        val resultState = remember { mutableStateOf(0.0) }
+        val resultAutonomia = remember { mutableStateOf(0.0) }
+        val resultCombustivelTotal = remember { mutableStateOf(0.0) }
 
         Scaffold(topBar = {
             TopAppBar(backgroundColor = AzulDark,
@@ -77,17 +77,6 @@ class MainActivity : ComponentActivity() {
                         color = Color.White,
                     )
                 })
-        }, bottomBar = {
-            BottomAppBar(
-                modifier = Modifier.fillMaxWidth(),
-                backgroundColor = Color.Black,
-
-
-                ) {
-                BottomNavigation {
-
-                }
-            }
         }
 
 
@@ -239,25 +228,21 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    "Resultado: ${resultState.value}",
+                    "Resultado: ${resultAutonomia.value}",
                     textAlign = TextAlign.Center,
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+
+
                 Button(
                     onClick = {
-                        val result = calcularConsumo(consumoVeiculo, combustivel)
-                        resultState.value = result
-
-
-                        DialogCustoCompose(resultState.value){}
-                            
-
-
-                            
-                        
-
+                        val autonomia = calcularAutonomia(consumoVeiculo, combustivel)
+                        val combustivelTotal = calcularCombustivelTotal(combustivel,precoCombustivel)
+                        resultAutonomia.value = autonomia
+                        resultCombustivelTotal.value = combustivelTotal
+                        showDialog.value = true
                      },
                     shape = ShapeButton.large,
                     colors = ButtonDefaults.buttonColors(RoxoClaro)
@@ -273,27 +258,122 @@ class MainActivity : ComponentActivity() {
                     )
 
                 }
+
+                if (showDialog.value){
+                    DialogCustoCompose(
+                        autonomia = resultAutonomia,
+                        combustivelTotal = resultCombustivelTotal,
+                        onDismissRequest = {showDialog.value = false})
+                }
             }
-
         }
-
-
     }
 
-    private fun calcularConsumo(consumoVeiculo: String, combustivel: String): Double {
+
+
+    @Composable
+    fun DialogCustoCompose (
+        autonomia: MutableState<Double>,
+        combustivelTotal: MutableState<Double>,
+        onDismissRequest: () -> Unit
+
+        ) {
+
+        AlertDialog(
+            onDismissRequest = onDismissRequest,
+            title = {
+                Text(
+                    text = "Resultado do Cálculo",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = Color.Black
+                )
+            },
+            text = {
+                Column {
+                    Text(
+                        text = "O resultado do cálculo é:",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        modifier = Modifier
+                            .padding(10.dp)
+                    )
+                    Text(
+                        text = "%.2f".format(autonomia.value),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = Color.Red,
+                        modifier = Modifier
+                            .padding(10.dp)
+                    )
+
+                    Text(
+                        text = "O resultado do cálculo é:",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        modifier = Modifier
+                            .padding(10.dp)
+                    )
+                    Text(
+                        text = "%.2f".format(combustivelTotal.value),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = Color.Red,
+                        modifier = Modifier
+                            .padding(10.dp)
+                    )
+
+
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {onDismissRequest() }
+                ) { Text(text = "Fechar") }
+            }
+        )
+    }
+
+
+
+    private fun calcularAutonomia(consumoVeiculo: String, combustivel: String): Double {
         val consumoDouble = consumoVeiculo.toDoubleOrNull() ?: 0.0
         val combustivelDouble = combustivel.toDoubleOrNull() ?: 0.0
         return consumoDouble * combustivelDouble
     }
+
+    private fun calcularCombustivelTotal (combustivel: String,precoCombustivel:String):Double{
+        val combustivelDouble = combustivel.toDoubleOrNull() ?: 0.0
+        val precoCombustivelDouble = precoCombustivel.toDoubleOrNull() ?: 0.0
+        return precoCombustivelDouble * combustivelDouble
+    }
+
+
 
 
 
     @Preview
     @Composable
     fun PrimeiraTelaPreview() {
+
         Gastos()
+
+        val resultAutonomia = remember { mutableStateOf(123.45) }
+        val resultCombustivel = remember { mutableStateOf(123.45) }
+
+        DialogCustoCompose(
+            autonomia = resultAutonomia,
+            combustivelTotal = resultCombustivel,
+            onDismissRequest = { /* Vazio, pois é apenas para preview */ }
+        )
+
+
     }
 }
+
+
 
 
 
