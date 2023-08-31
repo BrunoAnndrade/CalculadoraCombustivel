@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
@@ -225,16 +226,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    "Resultado: ${resultAutonomia.value}",
-                    textAlign = TextAlign.Center,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-
+                Spacer(modifier = Modifier.height(26.dp))
 
                 Button(
                     onClick = {
@@ -255,6 +247,7 @@ class MainActivity : ComponentActivity() {
                         color = Color.White,
                         modifier = Modifier
                             .padding(10.dp)
+
                     )
 
                 }
@@ -271,70 +264,7 @@ class MainActivity : ComponentActivity() {
 
 
 
-    @Composable
-    fun DialogCustoCompose (
-        autonomia: MutableState<Double>,
-        combustivelTotal: MutableState<Double>,
-        onDismissRequest: () -> Unit
 
-        ) {
-
-        AlertDialog(
-            onDismissRequest = onDismissRequest,
-            title = {
-                Text(
-                    text = "Resultado do Cálculo",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
-                    color = Color.Black
-                )
-            },
-            text = {
-                Column {
-                    Text(
-                        text = "O resultado do cálculo é:",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black,
-                        modifier = Modifier
-                            .padding(10.dp)
-                    )
-                    Text(
-                        text = "%.2f".format(autonomia.value),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color.Red,
-                        modifier = Modifier
-                            .padding(10.dp)
-                    )
-
-                    Text(
-                        text = "O resultado do cálculo é:",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black,
-                        modifier = Modifier
-                            .padding(10.dp)
-                    )
-                    Text(
-                        text = "%.2f".format(combustivelTotal.value),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color.Red,
-                        modifier = Modifier
-                            .padding(10.dp)
-                    )
-
-
-                }
-            },
-            confirmButton = {
-                Button(
-                    onClick = {onDismissRequest() }
-                ) { Text(text = "Fechar") }
-            }
-        )
-    }
 
 
 
@@ -359,15 +289,6 @@ class MainActivity : ComponentActivity() {
     fun PrimeiraTelaPreview() {
 
         Gastos()
-
-        val resultAutonomia = remember { mutableStateOf(123.45) }
-        val resultCombustivel = remember { mutableStateOf(123.45) }
-
-        DialogCustoCompose(
-            autonomia = resultAutonomia,
-            combustivelTotal = resultCombustivel,
-            onDismissRequest = { /* Vazio, pois é apenas para preview */ }
-        )
 
 
     }
