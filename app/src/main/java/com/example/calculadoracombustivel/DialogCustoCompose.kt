@@ -36,6 +36,9 @@ import com.example.calculadoracombustivel.ui.theme.ShapeButton
 
 @Composable
 fun DialogCustoCompose(
+    litrosPorViagem:MutableState<Double>,
+    custoPorViagem:MutableState<Double>,
+    custoPorPessoa:MutableState<Double>,
     autonomia: MutableState<Double>,
     combustivelTotal: MutableState<Double>,
     onDismissRequest: () -> Unit
@@ -57,15 +60,12 @@ fun DialogCustoCompose(
                     .background(AzulDark, ShapeButton.small)
                     .padding(5.dp)
             )
-
         },
-
 
         text = {
             Column(
                 Modifier
                     .padding(10.dp)
-
             ) {
 
                 Spacer(modifier = Modifier.height(40.dp))
@@ -104,6 +104,40 @@ fun DialogCustoCompose(
                 Row {
 
                     Image(
+                        painter = painterResource(id = R.drawable.fuel_gas02_station),
+                        contentDescription = "Simbolo gasolina",
+                    )
+
+                    Text(
+                        text = "Litros Por Viagem:",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = RoxoEscuro,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .align(CenterVertically)
+                            .padding(horizontal = 5.dp)
+
+                    )
+
+                    Text(
+                        text = "%.2f".format(litrosPorViagem.value),
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 18.sp,
+                        color = RoxoClaro,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .align(CenterVertically)
+                            .padding(horizontal = 5.dp)
+
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Row {
+
+                    Image(
                         painter = painterResource(id = R.drawable.coin_svgrepo_com),
                         contentDescription = "Simbolo veiculo",
                     )
@@ -122,6 +156,76 @@ fun DialogCustoCompose(
 
                     Text(
                         text = "%.2f".format(combustivelTotal.value),
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 18.sp,
+                        color = RoxoClaro,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .align(CenterVertically)
+                            .padding(horizontal = 5.dp)
+
+                    )
+                }
+
+
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Row {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
+                        contentDescription = "Simbolo moeda",
+                    )
+
+                    Text(
+                        text = "Custo Por viagem:",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = RoxoEscuro,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .align(CenterVertically)
+                            .padding(horizontal = 5.dp)
+
+                    )
+
+                    Text(
+                        text = "%.2f".format(custoPorViagem.value),
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 18.sp,
+                        color = RoxoClaro,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .align(CenterVertically)
+                            .padding(horizontal = 5.dp)
+
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Row {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
+                        contentDescription = "Simbolo moeda",
+                    )
+
+                    Text(
+                        text = "Custo por pessoa:",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = RoxoEscuro,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .align(CenterVertically)
+                            .padding(horizontal = 5.dp)
+
+                    )
+
+                    Text(
+                        text = "%.2f".format(custoPorPessoa.value),
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = RoxoClaro,
@@ -155,12 +259,16 @@ fun PrimeiraTelaPreview() {
 
     val resultAutonomia = remember { mutableStateOf(123.45) }
     val resultCombustivel = remember { mutableStateOf(123.45) }
+    val resultLitrosPorviagem = remember { mutableStateOf(123.45) }
+    val resultCustoPorViagem = remember { mutableStateOf(123.45) }
+    val resultCustoPorPessoa = remember { mutableStateOf(123.45) }
 
     DialogCustoCompose(
+        litrosPorViagem = resultLitrosPorviagem,
+        custoPorPessoa = resultCustoPorPessoa,
+        custoPorViagem = resultCustoPorViagem,
         autonomia = resultAutonomia,
         combustivelTotal = resultCombustivel,
-        onDismissRequest = { /* Vazio, pois é apenas para preview */ }
+        onDismissRequest = {  },
     )
-
-
 }

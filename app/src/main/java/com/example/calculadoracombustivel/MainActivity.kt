@@ -66,8 +66,14 @@ class MainActivity : ComponentActivity() {
         var consumoVeiculo by remember { mutableStateOf("") }
         var combustivel by remember { mutableStateOf("") }
         var precoCombustivel by remember { mutableStateOf("") }
+        var distanciaKm by remember{ mutableStateOf("") }
+        var pessoasVeiculo by remember{ mutableStateOf("") }
+
         val resultAutonomia = remember { mutableStateOf(0.0) }
         val resultCombustivelTotal = remember { mutableStateOf(0.0) }
+        val resultCustoPorViagem = remember { mutableStateOf(0.0) }
+        val resultCustoPorPessoa = remember { mutableStateOf(0.0) }
+        val resultLitrosPorViagem = remember { mutableStateOf(0.0) }
 
         Scaffold(topBar = {
             TopAppBar(backgroundColor = AzulDark,
@@ -226,12 +232,105 @@ class MainActivity : ComponentActivity() {
                             .width(70.dp)
                             .height(50.dp)
                     )
+
+
+                }
+
+                Row(
+                    modifier = Modifier
+                        .background(Color.White)
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp),
+                    verticalAlignment = Alignment.Bottom,
+                    horizontalArrangement = Arrangement.Start
+
+                ) {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.distancia) ,
+                        contentDescription = "simbolo distancia",
+                        modifier = Modifier
+                            .padding(end = 10.dp)
+                    )
+
+
+                    Text(
+                        text = "Distância (km):",
+                        modifier = Modifier
+                            .padding(end = 73.5.dp),
+                        color = RoxoEscuro,
+                        textAlign = TextAlign.End,
+                        style = TextStyle(
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    )
+
+                    TextField(
+                        value = distanciaKm.take(5),
+                        onValueChange = { distanciaKm = it },
+                        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                        colors = TextFieldDefaults.textFieldColors(
+                            textColor = Color.Red,
+                            backgroundColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .width(70.dp)
+                            .height(50.dp)
+                    )
+                }
+
+                Row(
+                    modifier = Modifier
+                        .background(Color.White)
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp),
+                    verticalAlignment = Alignment.Bottom,
+                    horizontalArrangement = Arrangement.Start
+
+                ) {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.pessoas) ,
+                        contentDescription = "simbolo pessoas",
+                        modifier = Modifier
+                            .padding(end = 10.dp)
+                    )
+
+
+                    Text(
+                        text = "Pessoas a bordo:",
+                        modifier = Modifier
+                            .padding(end = 51.dp),
+                        color = RoxoEscuro,
+                        textAlign = TextAlign.End,
+                        style = TextStyle(
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    )
+
+                    TextField(
+                        value = pessoasVeiculo.take(5),
+                        onValueChange = { pessoasVeiculo = it },
+                        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                        colors = TextFieldDefaults.textFieldColors(
+                            textColor = Color.Red,
+                            backgroundColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .width(70.dp)
+                            .height(50.dp)
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(26.dp))
 
                 Button(
                     onClick = {
+                        val litrosPorViagem = viewmodel.calcularLitrosPorViagem(distanciaKm,consumoVeiculo)
+                        val custoPorViagem = viewmodel.calcularcustoPorViagem(combustivel,precoCombustivel)
+                        val custoPorPessoa = viewmodel.calcularCustoPorPessoa(combustivel,pessoasVeiculo)
                         val autonomia = viewmodel.calcularAutonomia(consumoVeiculo,combustivel)
                         val combustivelTotal = viewmodel.calcularCombustivelTotal(combustivel,precoCombustivel)
                         resultAutonomia.value = autonomia
