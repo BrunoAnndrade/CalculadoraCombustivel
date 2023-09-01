@@ -48,6 +48,9 @@ import com.example.calculadoracombustivel.ui.theme.RoxoEscuro
 import com.example.calculadoracombustivel.ui.theme.ShapeButton
 
 class MainActivity : ComponentActivity() {
+
+    var viewmodel = CalculadoraViewModel.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -60,7 +63,6 @@ class MainActivity : ComponentActivity() {
     fun Gastos() {
 
         val showDialog = remember { mutableStateOf(false) }
-
         var consumoVeiculo by remember { mutableStateOf("") }
         var combustivel by remember { mutableStateOf("") }
         var precoCombustivel by remember { mutableStateOf("") }
@@ -230,8 +232,8 @@ class MainActivity : ComponentActivity() {
 
                 Button(
                     onClick = {
-                        val autonomia = calcularAutonomia(consumoVeiculo, combustivel)
-                        val combustivelTotal = calcularCombustivelTotal(combustivel,precoCombustivel)
+                        val autonomia = viewmodel.calcularAutonomia(consumoVeiculo,combustivel)
+                        val combustivelTotal = viewmodel.calcularCombustivelTotal(combustivel,precoCombustivel)
                         resultAutonomia.value = autonomia
                         resultCombustivelTotal.value = combustivelTotal
                         showDialog.value = true
@@ -261,28 +263,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-
-
-
-
-
-
-    private fun calcularAutonomia(consumoVeiculo: String, combustivel: String): Double {
-        val consumoDouble = consumoVeiculo.toDoubleOrNull() ?: 0.0
-        val combustivelDouble = combustivel.toDoubleOrNull() ?: 0.0
-        return consumoDouble * combustivelDouble
-    }
-
-    private fun calcularCombustivelTotal (combustivel: String,precoCombustivel:String):Double{
-        val combustivelDouble = combustivel.toDoubleOrNull() ?: 0.0
-        val precoCombustivelDouble = precoCombustivel.toDoubleOrNull() ?: 0.0
-        return precoCombustivelDouble * combustivelDouble
-    }
-
-
-
-
 
     @Preview
     @Composable
