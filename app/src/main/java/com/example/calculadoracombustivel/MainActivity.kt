@@ -66,8 +66,8 @@ class MainActivity : ComponentActivity() {
         var consumoVeiculo by remember { mutableStateOf("") }
         var combustivel by remember { mutableStateOf("") }
         var precoCombustivel by remember { mutableStateOf("") }
-        var distanciaKm by remember{ mutableStateOf("") }
-        var pessoasVeiculo by remember{ mutableStateOf("") }
+        var distanciaKm by remember { mutableStateOf("") }
+        var pessoasVeiculo by remember { mutableStateOf("") }
 
         val resultAutonomia = remember { mutableStateOf(0.0) }
         val resultCombustivelTotal = remember { mutableStateOf(0.0) }
@@ -121,8 +121,7 @@ class MainActivity : ComponentActivity() {
                     Text(
                         text = "Consumo (km/L):",
                         modifier = Modifier
-                            .padding(end = 50.dp)
-                        ,
+                            .padding(end = 50.dp),
                         color = RoxoEscuro,
                         textAlign = TextAlign.Center,
                         style = TextStyle(
@@ -201,7 +200,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     Image(
-                        painter = painterResource(id = R.drawable.coin_svgrepo_com) ,
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
                         contentDescription = "simbolo moeda",
                         modifier = Modifier
                             .padding(end = 10.dp)
@@ -247,7 +246,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     Image(
-                        painter = painterResource(id = R.drawable.distancia) ,
+                        painter = painterResource(id = R.drawable.distancia),
                         contentDescription = "simbolo distancia",
                         modifier = Modifier
                             .padding(end = 10.dp)
@@ -291,7 +290,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     Image(
-                        painter = painterResource(id = R.drawable.pessoas) ,
+                        painter = painterResource(id = R.drawable.pessoas),
                         contentDescription = "simbolo pessoas",
                         modifier = Modifier
                             .padding(end = 10.dp)
@@ -328,15 +327,22 @@ class MainActivity : ComponentActivity() {
 
                 Button(
                     onClick = {
-                        val litrosPorViagem = viewmodel.calcularLitrosPorViagem(distanciaKm,consumoVeiculo)
-                        val custoPorViagem = viewmodel.calcularcustoPorViagem(combustivel,precoCombustivel)
-                        val custoPorPessoa = viewmodel.calcularCustoPorPessoa(combustivel,pessoasVeiculo)
-                        val autonomia = viewmodel.calcularAutonomia(consumoVeiculo,combustivel)
-                        val combustivelTotal = viewmodel.calcularCombustivelTotal(combustivel,precoCombustivel)
+                        val litrosPorViagem =
+                            viewmodel.calcularLitrosPorViagem(distanciaKm, consumoVeiculo)
+                        val custoPorViagem =
+                            viewmodel.calcularcustoPorViagem(combustivel, precoCombustivel)
+                        val custoPorPessoa =
+                            viewmodel.calcularCustoPorPessoa(combustivel, pessoasVeiculo)
+                        val autonomia = viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
+                        val combustivelTotal =
+                            viewmodel.calcularCombustivelTotal(combustivel, precoCombustivel)
                         resultAutonomia.value = autonomia
                         resultCombustivelTotal.value = combustivelTotal
+                        resultCustoPorPessoa.value = custoPorPessoa
+                        resultCustoPorViagem.value = custoPorViagem
+                        resultLitrosPorViagem.value = litrosPorViagem
                         showDialog.value = true
-                     },
+                    },
                     shape = ShapeButton.large,
                     colors = ButtonDefaults.buttonColors(RoxoClaro)
 
@@ -348,16 +354,17 @@ class MainActivity : ComponentActivity() {
                         color = Color.White,
                         modifier = Modifier
                             .padding(10.dp)
-
                     )
-
                 }
 
-                if (showDialog.value){
+                if (showDialog.value) {
                     DialogCustoCompose(
                         autonomia = resultAutonomia,
                         combustivelTotal = resultCombustivelTotal,
-                        onDismissRequest = {showDialog.value = false})
+                        custoPorPessoa = resultCustoPorPessoa,
+                        custoPorViagem = resultCustoPorViagem,
+                        litrosPorViagem = resultLitrosPorViagem,
+                        onDismissRequest = { showDialog.value = false })
                 }
             }
         }
