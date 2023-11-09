@@ -18,7 +18,6 @@ val Marrom = Color(0xFF824201)
 
 
 //meu app
-
 val AzulDark = Color(0xFF101026)
 val RoxoEscuro = Color(0xFF2D2C59)
 val RoxoClaro= Color(0xFF725EF2)

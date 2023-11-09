@@ -47,6 +47,7 @@ import com.example.calculadoracombustivel.ui.theme.RoxoClaro
 import com.example.calculadoracombustivel.ui.theme.RoxoEscuro
 import com.example.calculadoracombustivel.ui.theme.ShapeButton
 
+
 class MainActivity : ComponentActivity() {
 
     var viewmodel = CalculadoraViewModel.create()
@@ -76,7 +77,9 @@ class MainActivity : ComponentActivity() {
         val resultLitrosPorViagem = remember { mutableStateOf(0.0) }
 
         Scaffold(topBar = {
-            TopAppBar(backgroundColor = AzulDark,
+            TopAppBar(
+
+                backgroundColor = AzulDark,
 
                 title = {
                     Text(
@@ -373,10 +376,7 @@ class MainActivity : ComponentActivity() {
     @Preview
     @Composable
     fun PrimeiraTelaPreview() {
-
         Gastos()
-
-
     }
 }
 
