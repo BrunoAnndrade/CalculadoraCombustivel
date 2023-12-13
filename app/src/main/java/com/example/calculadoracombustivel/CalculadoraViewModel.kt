@@ -20,8 +20,8 @@ class CalculadoraViewModel : ViewModel() {
         return distanciaDouble / consumoVeiculoDouble
     }
 
-    fun calcularcustoPorViagem(combustivelTotal: String, valorCombustivelPorLitro: String): Double {
-        val combustivelTotalDouble = combustivelTotal.toDouble()
+    fun calcularcustoPorViagem(combustivelTotal: Double, valorCombustivelPorLitro: String): Double {
+        val combustivelTotalDouble = combustivelTotal
         val valorCombustivelPorLitroDouble = valorCombustivelPorLitro.toDouble()
         return combustivelTotalDouble * valorCombustivelPorLitroDouble
     }

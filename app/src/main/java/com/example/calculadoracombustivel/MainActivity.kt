@@ -13,11 +13,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
@@ -26,7 +24,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -203,7 +200,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     Image(
-                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com_1),
                         contentDescription = "simbolo moeda",
                         modifier = Modifier
                             .padding(end = 10.dp)
@@ -332,13 +329,14 @@ class MainActivity : ComponentActivity() {
                     onClick = {
                         val litrosPorViagem =
                             viewmodel.calcularLitrosPorViagem(distanciaKm, consumoVeiculo)
+                        val combustivelTotal =
+                            viewmodel.calcularCombustivelTotal(combustivel, precoCombustivel)
                         val custoPorViagem =
-                            viewmodel.calcularcustoPorViagem(combustivel, precoCombustivel)
+                            viewmodel.calcularcustoPorViagem(combustivelTotal, precoCombustivel)
                         val custoPorPessoa =
                             viewmodel.calcularCustoPorPessoa(combustivel, pessoasVeiculo)
                         val autonomia = viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
-                        val combustivelTotal =
-                            viewmodel.calcularCombustivelTotal(combustivel, precoCombustivel)
+
                         resultAutonomia.value = autonomia
                         resultCombustivelTotal.value = combustivelTotal
                         resultCustoPorPessoa.value = custoPorPessoa

@@ -5,20 +5,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calculadoracombustivel.ui.theme.AzulDark
-import com.example.calculadoracombustivel.ui.theme.RoxoClarinho
 import com.example.calculadoracombustivel.ui.theme.RoxoClaro
 import com.example.calculadoracombustivel.ui.theme.RoxoEscuro
 import com.example.calculadoracombustivel.ui.theme.ShapeButton
@@ -48,6 +46,7 @@ fun DialogCustoCompose(
     AlertDialog(
         onDismissRequest = onDismissRequest,
 
+
         title = {
             Text(
                 text = "Distância",
@@ -65,7 +64,7 @@ fun DialogCustoCompose(
         text = {
             Column(
                 Modifier
-                    .padding(10.dp)
+                    .fillMaxWidth()
             ) {
 
                 Spacer(modifier = Modifier.height(40.dp))
@@ -138,12 +137,12 @@ fun DialogCustoCompose(
                 Row {
 
                     Image(
-                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com_1),
                         contentDescription = "Simbolo veiculo",
                     )
 
                     Text(
-                        text = "Custo total:",
+                        text = "Combustível necessário (L):",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = RoxoEscuro,
@@ -164,6 +163,7 @@ fun DialogCustoCompose(
                             .align(CenterVertically)
                             .padding(horizontal = 5.dp)
 
+
                     )
                 }
 
@@ -174,7 +174,7 @@ fun DialogCustoCompose(
                 Row {
 
                     Image(
-                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com_1),
                         contentDescription = "Simbolo moeda",
                     )
 
@@ -208,7 +208,7 @@ fun DialogCustoCompose(
                 Row {
 
                     Image(
-                        painter = painterResource(id = R.drawable.coin_svgrepo_com),
+                        painter = painterResource(id = R.drawable.coin_svgrepo_com_1),
                         contentDescription = "Simbolo moeda",
                     )
 
