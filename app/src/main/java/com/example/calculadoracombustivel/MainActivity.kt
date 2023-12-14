@@ -334,7 +334,7 @@ class MainActivity : ComponentActivity() {
                         val custoPorViagem =
                             viewmodel.calcularcustoPorViagem(combustivelTotal, precoCombustivel)
                         val custoPorPessoa =
-                            viewmodel.calcularCustoPorPessoa(combustivel, pessoasVeiculo)
+                            viewmodel.calcularCustoPorPessoa(combustivelTotal, pessoasVeiculo)
                         val autonomia = viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
 
                         resultAutonomia.value = autonomia

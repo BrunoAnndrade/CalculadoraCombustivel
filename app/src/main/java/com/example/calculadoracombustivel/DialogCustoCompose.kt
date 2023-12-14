@@ -5,11 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -34,9 +32,9 @@ import com.example.calculadoracombustivel.ui.theme.ShapeButton
 
 @Composable
 fun DialogCustoCompose(
-    litrosPorViagem:MutableState<Double>,
-    custoPorViagem:MutableState<Double>,
-    custoPorPessoa:MutableState<Double>,
+    litrosPorViagem: MutableState<Double>,
+    custoPorViagem: MutableState<Double>,
+    custoPorPessoa: MutableState<Double>,
     autonomia: MutableState<Double>,
     combustivelTotal: MutableState<Double>,
     onDismissRequest: () -> Unit
@@ -45,6 +43,7 @@ fun DialogCustoCompose(
 
     AlertDialog(
         onDismissRequest = onDismissRequest,
+        modifier = Modifier.fillMaxWidth(),
 
 
         title = {
@@ -83,18 +82,18 @@ fun DialogCustoCompose(
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
                     )
 
                     Text(
-                        text = "%.2f".format(autonomia.value),
+                        text = "%.2f".format(autonomia.value) + " km",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
                     )
                 }
 
@@ -108,26 +107,25 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "Litros Por Viagem:",
+                        text = "Litros por viagem:",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = RoxoEscuro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
 
                     )
 
                     Text(
-                        text = "%.2f".format(litrosPorViagem.value),
+                        text = "%.2f".format(litrosPorViagem.value) + " litros",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
 
                     )
                 }
@@ -142,26 +140,25 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "Combustível necessário (L):",
+                        text = "Combustível:",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = RoxoEscuro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
 
                     )
 
                     Text(
-                        text = "%.2f".format(combustivelTotal.value),
+                        text = "%.2f".format(combustivelTotal.value) + " litros",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
 
 
                     )
@@ -179,26 +176,26 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "Custo Por viagem:",
+                        text = "Custo da viagem:",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = RoxoEscuro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
 
                     )
 
                     Text(
-                        text = "%.2f".format(custoPorViagem.value),
+                        text = "%.2f".format(custoPorViagem.value) + " reais",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
 
                     )
                 }
@@ -210,7 +207,8 @@ fun DialogCustoCompose(
                     Image(
                         painter = painterResource(id = R.drawable.coin_svgrepo_com_1),
                         contentDescription = "Simbolo moeda",
-                    )
+
+                        )
 
                     Text(
                         text = "Custo por pessoa:",
@@ -220,19 +218,19 @@ fun DialogCustoCompose(
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
 
                     )
 
                     Text(
-                        text = "%.2f".format(custoPorPessoa.value),
+                        text = "%.2f".format(custoPorPessoa.value) + " reais",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .padding(horizontal = 5.dp)
+
 
                     )
                 }
@@ -243,11 +241,13 @@ fun DialogCustoCompose(
                 onClick = { onDismissRequest() },
                 shape = ShapeButton.large,
                 colors = ButtonDefaults.buttonColors(RoxoClaro),
-            ) { Text (
-                text = "Fechar",
-                color = Color.White,
-                fontWeight = FontWeight.ExtraBold
-                ) }
+            ) {
+                Text(
+                    text = "Fechar",
+                    color = Color.White,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            }
         }
     )
 }
@@ -269,6 +269,6 @@ fun PrimeiraTelaPreview() {
         custoPorViagem = resultCustoPorViagem,
         autonomia = resultAutonomia,
         combustivelTotal = resultCombustivel,
-        onDismissRequest = {  },
+        onDismissRequest = { },
     )
 }

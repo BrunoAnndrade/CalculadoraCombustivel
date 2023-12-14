@@ -26,7 +26,7 @@ class CalculadoraViewModel : ViewModel() {
         return combustivelTotalDouble * valorCombustivelPorLitroDouble
     }
 
-    fun calcularCustoPorPessoa(combustivelTotal: String, quantidadePessoas: String): Double {
+    fun calcularCustoPorPessoa(combustivelTotal: Double, quantidadePessoas: String): Double {
         val CombustivelTotalDouble = combustivelTotal.toDouble()
         val quantidadePessoasDouble = quantidadePessoas.toDouble()
         return CombustivelTotalDouble / quantidadePessoasDouble
@@ -44,7 +44,7 @@ class CalculadoraViewModel : ViewModel() {
         return precoCombustivelDouble * combustivelTotalDouble
     }
 
-    fun showmessege(view: View, mensagem:String) {
+    fun showmessege(view: View, mensagem: String) {
         Snackbar.make(view, mensagem, Snackbar.LENGTH_LONG)
             .setAction("Action", null)
             .show()
