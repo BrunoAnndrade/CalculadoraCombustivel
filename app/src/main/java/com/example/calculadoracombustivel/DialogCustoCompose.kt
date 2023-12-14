@@ -48,7 +48,7 @@ fun DialogCustoCompose(
 
         title = {
             Text(
-                text = "Distância",
+                text = "Resultado",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Color.White,
@@ -86,9 +86,9 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "%.2f".format(autonomia.value) + " km",
+                        text = " %.2f".format(autonomia.value) + " km",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 18.sp,
+                        fontSize = 17.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
@@ -118,9 +118,9 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "%.2f".format(litrosPorViagem.value) + " litros",
+                        text = " %.2f".format(litrosPorViagem.value) + " litros",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 18.sp,
+                        fontSize = 17.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
@@ -152,9 +152,9 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "%.2f".format(combustivelTotal.value) + " litros",
+                        text = " %.2f".format(combustivelTotal.value) + " litros",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 18.sp,
+                        fontSize = 17.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
@@ -188,9 +188,9 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "%.2f".format(custoPorViagem.value) + " reais",
+                        text = " %.2f".format(custoPorViagem.value) + " reais",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 18.sp,
+                        fontSize = 17.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier
@@ -223,9 +223,9 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = "%.2f".format(custoPorPessoa.value) + " reais",
+                        text = " %.2f".format(custoPorPessoa.value) + " reais",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 18.sp,
+                        fontSize = 17.sp,
                         color = RoxoClaro,
                         textAlign = TextAlign.Start,
                         modifier = Modifier

@@ -1,6 +1,7 @@
 package com.example.calculadoracombustivel
 
 import android.annotation.SuppressLint
+import android.graphics.Paint.Align
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.Text
@@ -106,7 +108,7 @@ class MainActivity : ComponentActivity() {
                         .background(Color.White)
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp),
-                    verticalAlignment = Alignment.Bottom,
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
 
                 ) {
@@ -135,8 +137,12 @@ class MainActivity : ComponentActivity() {
                         onValueChange = { consumoVeiculo = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
-                            textColor = Color.Red,
+                            textColor = Color.Black,
                             backgroundColor = Color.White
+                        ),
+                        textStyle = MaterialTheme.typography.body1.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp,
                         ),
                         modifier = Modifier
                             .width(70.dp)
@@ -149,7 +155,7 @@ class MainActivity : ComponentActivity() {
                         .background(Color.White)
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp),
-                    verticalAlignment = Alignment.Bottom,
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
 
                 ) {
@@ -179,14 +185,18 @@ class MainActivity : ComponentActivity() {
                         onValueChange = { combustivel = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
-                            textColor = Color.Red,
+                            textColor = Color.Black,
                             backgroundColor = Color.White
+                            ),
+                        textStyle = MaterialTheme.typography.body1.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp,
                         ),
+
                         modifier = Modifier
                             .width(70.dp)
                             .height(50.dp)
-
-                    )
+                        )
                 }
 
                 Row(
@@ -194,7 +204,7 @@ class MainActivity : ComponentActivity() {
                         .background(Color.White)
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp),
-                    verticalAlignment = Alignment.Bottom,
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
 
                 ) {
@@ -224,8 +234,12 @@ class MainActivity : ComponentActivity() {
                         onValueChange = { precoCombustivel = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
-                            textColor = Color.Red,
+                            textColor = Color.Black,
                             backgroundColor = Color.White
+                        ),
+                        textStyle = MaterialTheme.typography.body1.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp,
                         ),
                         modifier = Modifier
                             .width(70.dp)
@@ -240,7 +254,7 @@ class MainActivity : ComponentActivity() {
                         .background(Color.White)
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp),
-                    verticalAlignment = Alignment.Bottom,
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
 
                 ) {
@@ -270,8 +284,12 @@ class MainActivity : ComponentActivity() {
                         onValueChange = { distanciaKm = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
-                            textColor = Color.Red,
+                            textColor = Color.Black,
                             backgroundColor = Color.White
+                        ),
+                        textStyle = MaterialTheme.typography.body1.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp,
                         ),
                         modifier = Modifier
                             .width(70.dp)
@@ -284,7 +302,7 @@ class MainActivity : ComponentActivity() {
                         .background(Color.White)
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp),
-                    verticalAlignment = Alignment.Bottom,
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
 
                 ) {
@@ -314,8 +332,12 @@ class MainActivity : ComponentActivity() {
                         onValueChange = { pessoasVeiculo = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
-                            textColor = Color.Red,
+                            textColor = Color.Black,
                             backgroundColor = Color.White
+                        ),
+                        textStyle = MaterialTheme.typography.body1.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp,
                         ),
                         modifier = Modifier
                             .width(70.dp)
