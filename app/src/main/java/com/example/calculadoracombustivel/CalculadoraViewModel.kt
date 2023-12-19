@@ -44,9 +44,4 @@ class CalculadoraViewModel : ViewModel() {
         return precoCombustivelDouble * combustivelTotalDouble
     }
 
-    fun showmessege(view: View, mensagem: String) {
-        Snackbar.make(view, mensagem, Snackbar.LENGTH_LONG)
-            .setAction("Action", null)
-            .show()
-    }
 }

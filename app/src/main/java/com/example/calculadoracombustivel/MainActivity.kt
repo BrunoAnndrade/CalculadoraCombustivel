@@ -21,6 +21,8 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -29,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,6 +48,7 @@ import com.example.calculadoracombustivel.ui.theme.AzulDark
 import com.example.calculadoracombustivel.ui.theme.RoxoClaro
 import com.example.calculadoracombustivel.ui.theme.RoxoEscuro
 import com.example.calculadoracombustivel.ui.theme.ShapeButton
+import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
@@ -75,20 +79,28 @@ class MainActivity : ComponentActivity() {
         val resultCustoPorPessoa = remember { mutableStateOf(0.0) }
         val resultLitrosPorViagem = remember { mutableStateOf(0.0) }
 
-        Scaffold(topBar = {
-            TopAppBar(
+        val scope = rememberCoroutineScope()
+        val snackbarHostState = remember { SnackbarHostState() }
 
-                backgroundColor = AzulDark,
+        Scaffold(
 
-                title = {
-                    Text(
-                        text = "Calculadora de Combustível",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = Color.White,
-                    )
-                })
-        }
+            topBar = {
+                TopAppBar(
+
+                    backgroundColor = AzulDark,
+
+                    title = {
+                        Text(
+                            text = "Calculadora de Combustível",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.White,
+                        )
+
+                    })
+            },
+
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
 
 
         ) {
@@ -187,7 +199,7 @@ class MainActivity : ComponentActivity() {
                         colors = TextFieldDefaults.textFieldColors(
                             textColor = Color.Black,
                             backgroundColor = Color.White
-                            ),
+                        ),
                         textStyle = MaterialTheme.typography.body1.copy(
                             textAlign = TextAlign.Center,
                             fontSize = 18.sp,
@@ -196,7 +208,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .width(70.dp)
                             .height(50.dp)
-                        )
+                    )
                 }
 
                 Row(
@@ -349,22 +361,38 @@ class MainActivity : ComponentActivity() {
 
                 Button(
                     onClick = {
-                        val litrosPorViagem =
-                            viewmodel.calcularLitrosPorViagem(distanciaKm, consumoVeiculo)
-                        val combustivelTotal =
-                            viewmodel.calcularCombustivelTotal(combustivel, precoCombustivel)
-                        val custoPorViagem =
-                            viewmodel.calcularcustoPorViagem(combustivelTotal, precoCombustivel)
-                        val custoPorPessoa =
-                            viewmodel.calcularCustoPorPessoa(combustivelTotal, pessoasVeiculo)
-                        val autonomia = viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
 
-                        resultAutonomia.value = autonomia
-                        resultCombustivelTotal.value = combustivelTotal
-                        resultCustoPorPessoa.value = custoPorPessoa
-                        resultCustoPorViagem.value = custoPorViagem
-                        resultLitrosPorViagem.value = litrosPorViagem
-                        showDialog.value = true
+                        if (
+                            consumoVeiculo.isNotBlank() &&
+                            combustivel.isNotBlank() &&
+                            precoCombustivel.isNotBlank() &&
+                            distanciaKm.isNotBlank() &&
+                            pessoasVeiculo.isNotBlank()
+                        ) {
+                            val litrosPorViagem =
+                                viewmodel.calcularLitrosPorViagem(distanciaKm, consumoVeiculo)
+                            val combustivelTotal =
+                                viewmodel.calcularCombustivelTotal(combustivel, precoCombustivel)
+                            val custoPorViagem =
+                                viewmodel.calcularcustoPorViagem(combustivelTotal, precoCombustivel)
+                            val custoPorPessoa =
+                                viewmodel.calcularCustoPorPessoa(combustivelTotal, pessoasVeiculo)
+                            val autonomia = viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
+
+                            resultAutonomia.value = autonomia
+                            resultCombustivelTotal.value = combustivelTotal
+                            resultCustoPorPessoa.value = custoPorPessoa
+                            resultCustoPorViagem.value = custoPorViagem
+                            resultLitrosPorViagem.value = litrosPorViagem
+                            showDialog.value = true
+
+                        } else {
+                            scope.launch {
+                                snackbarHostState.showSnackbar("Preencha todos os campos")
+                            }
+                        }
+
+
                     },
                     shape = ShapeButton.large,
                     colors = ButtonDefaults.buttonColors(RoxoClaro)
@@ -392,6 +420,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 
     @Preview
     @Composable
