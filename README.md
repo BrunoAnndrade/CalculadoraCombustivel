@@ -13,9 +13,10 @@ Calculadora de combustível foi um aplicativo que desenvolvi para aprender sobre
 * Jetpack Compose
   - Utilizado para a construção da interface do usuário
   - Alert Dialog
-* Activity e ViewGroup: Componentes para a hospedagem e organização das telas.
+* Activity e ViewGroup: Componentes para a hospedagem e organização das telas
 * Arquitetura MVVM
-* String Resource: Utilizado para a concatenação de textos.
+* String Resource: Utilizado para a concatenação de textos
+* Testes Unitários: Utilizado a biblioteca JUnit.
   
 ## Funcionalidades Implementadas
 
