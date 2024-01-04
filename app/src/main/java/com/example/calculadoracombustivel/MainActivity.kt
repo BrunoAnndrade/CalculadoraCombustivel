@@ -1,7 +1,6 @@
 package com.example.calculadoracombustivel
 
 import android.annotation.SuppressLint
-import android.graphics.Paint.Align
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -372,12 +371,13 @@ class MainActivity : ComponentActivity() {
                             val litrosPorViagem =
                                 viewmodel.calcularLitrosPorViagem(distanciaKm, consumoVeiculo)
                             val combustivelTotal =
-                                viewmodel.calcularCombustivelTotal(combustivel, precoCombustivel)
+                                viewmodel.calcularPrecoCombustivelTotal(combustivel, precoCombustivel)
                             val custoPorViagem =
-                                viewmodel.calcularcustoPorViagem(combustivelTotal, precoCombustivel)
+                                viewmodel.calcularCustoPorViagem(combustivelTotal, precoCombustivel)
                             val custoPorPessoa =
-                                viewmodel.calcularCustoPorPessoa(combustivelTotal, pessoasVeiculo)
-                            val autonomia = viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
+                                viewmodel.calcularCustoPorPessoa(custoPorViagem, pessoasVeiculo)
+                            val autonomia =
+                                viewmodel.calcularAutonomia(consumoVeiculo, combustivel)
 
                             resultAutonomia.value = autonomia
                             resultCombustivelTotal.value = combustivelTotal

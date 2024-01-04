@@ -86,7 +86,7 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = " %.2f".format(autonomia.value) + " km",
+                        text = " %.2f".format(autonomia.value) + " Km",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 17.sp,
                         color = RoxoClaro,
@@ -118,7 +118,7 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = " %.2f".format(litrosPorViagem.value) + " litros",
+                        text = " %.2f".format(litrosPorViagem.value) + " L",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 17.sp,
                         color = RoxoClaro,
@@ -152,7 +152,7 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = " %.2f".format(combustivelTotal.value) + " litros",
+                        text = " %.2f".format(combustivelTotal.value) + " R$",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 17.sp,
                         color = RoxoClaro,
@@ -188,7 +188,7 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = " %.2f".format(custoPorViagem.value) + " reais",
+                        text = " %.2f".format(custoPorViagem.value) + " R$",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 17.sp,
                         color = RoxoClaro,
@@ -223,7 +223,7 @@ fun DialogCustoCompose(
                     )
 
                     Text(
-                        text = " %.2f".format(custoPorPessoa.value) + " reais",
+                        text = " %.2f".format(custoPorPessoa.value) + " R$",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 17.sp,
                         color = RoxoClaro,

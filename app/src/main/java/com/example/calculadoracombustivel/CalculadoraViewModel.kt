@@ -1,8 +1,6 @@
 package com.example.calculadoracombustivel
 
-import android.view.View
 import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class CalculadoraViewModel : ViewModel() {
 
@@ -13,23 +11,22 @@ class CalculadoraViewModel : ViewModel() {
         }
     }
 
-
     fun calcularLitrosPorViagem(distancia: String, consumoVeiculo: String): Double {
         val distanciaDouble = distancia.toDouble()
         val consumoVeiculoDouble = consumoVeiculo.toDouble()
         return distanciaDouble / consumoVeiculoDouble
     }
 
-    fun calcularcustoPorViagem(combustivelTotal: Double, valorCombustivelPorLitro: String): Double {
+    fun calcularCustoPorViagem(combustivelTotal: Double, valorCombustivelPorLitro: String): Double {
         val combustivelTotalDouble = combustivelTotal
         val valorCombustivelPorLitroDouble = valorCombustivelPorLitro.toDouble()
         return combustivelTotalDouble * valorCombustivelPorLitroDouble
     }
 
-    fun calcularCustoPorPessoa(combustivelTotal: Double, quantidadePessoas: String): Double {
-        val CombustivelTotalDouble = combustivelTotal.toDouble()
+    fun calcularCustoPorPessoa(custoPorViagem: Double, quantidadePessoas: String): Double {
+        val CustoPorViagemDouble = custoPorViagem
         val quantidadePessoasDouble = quantidadePessoas.toDouble()
-        return CombustivelTotalDouble / quantidadePessoasDouble
+        return CustoPorViagemDouble / quantidadePessoasDouble
     }
 
     fun calcularAutonomia(consumoVeiculo: String, combustivelTotal: String): Double {
@@ -38,7 +35,7 @@ class CalculadoraViewModel : ViewModel() {
         return consumoDouble * combustivelTotalDouble
     }
 
-    fun calcularCombustivelTotal(combustivelTotal: String, precoCombustivel: String): Double {
+    fun calcularPrecoCombustivelTotal(combustivelTotal: String, precoCombustivel: String): Double {
         val combustivelTotalDouble = combustivelTotal.toDouble()
         val precoCombustivelDouble = precoCombustivel.toDouble()
         return precoCombustivelDouble * combustivelTotalDouble
