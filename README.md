@@ -7,21 +7,15 @@ Calculadora de combustível foi um aplicativo que desenvolvi para aprender sobre
 <img src="/result/imagem1.png" width="260">&emsp;<img src="/result/imagem2.png" width="260">&emsp;<img src="/result/imagem3.png" width="260">
 
 ## Tecnologias
-* Kotlin
-* Activity para host de telas
-* ViewGroup
-* Jetpack Compose
-- Components de UI
-    
 
-* Kotlin: Linguagem principal.
+* Kotlin
+* ViewGroup
 * Jetpack Compose
   - Utilizado para a construção da interface do usuário
   - Alert Dialog
 * Activity e ViewGroup: Componentes para a hospedagem e organização das telas.
 * Arquitetura MVVM
 * String Resource: Utilizado para a concatenação de textos.
-
   
 ## Funcionalidades Implementadas
 
