@@ -7,18 +7,29 @@ Calculadora de combustível foi um aplicativo que desenvolvi para aprender sobre
 <img src="/result/imagem1.png" width="260">&emsp;<img src="/result/imagem2.png" width="260">&emsp;<img src="/result/imagem3.png" width="260">
 
 ## Tecnologias
+
 * Kotlin
-* Activity para host de telas
 * ViewGroup
 * Jetpack Compose
-- Components de UI
-    
+  - Utilizado para a construção da interface do usuário
+  - Alert Dialog
+* Activity e ViewGroup: Componentes para a hospedagem e organização das telas
+* Arquitetura MVVM
+* String Resource: Utilizado para a concatenação de textos
+* Testes Unitários: Utilizado a biblioteca JUnit.
+  
+## Funcionalidades Implementadas
 
-- String resource para concatenação de textos
+A Calculadora de Combustível foi desenvolvida em Kotlin, utilizando o Jetpack Compose para a criação da interface do usuário. Algumas das principais funcionalidades implementadas incluem:
 
+* Cálculo da autonomia do veículo.
+* Determinação do total de combustível necessário.
+* Estimativa do custo por viagem.
+* Avaliação do custo por pessoa.
+* Cálculo da quantidade de litros por viagem.
 
 ### TO DO
-- Melhorar estilização do app e colocar novas funções
+- Melhorar estilização do app e adicionar novas funções.
 
 ## Author
 Bruno Silva Andrade (follow me on [Linkedin](https://linkedin.com/in/bruno-andrade-312a48141))
