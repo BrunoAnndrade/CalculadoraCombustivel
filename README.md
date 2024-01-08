@@ -29,7 +29,7 @@ A Calculadora de Combustível foi desenvolvida em Kotlin, utilizando o Jetpack C
 * Cálculo da quantidade de litros por viagem.
 
 ### TO DO
-- Melhorar estilização do app e adicionar novas funções.
+- Melhorar estilização do app e adicionar novas funcionalidades.
 
 ## Author
 Bruno Silva Andrade (follow me on [Linkedin](https://linkedin.com/in/bruno-andrade-312a48141))
