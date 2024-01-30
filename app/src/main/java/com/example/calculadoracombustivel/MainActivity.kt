@@ -144,7 +144,7 @@ class MainActivity : ComponentActivity() {
                     )
 
                     TextField(
-                        value = consumoVeiculo.take(5),
+                        value = consumoVeiculo.take(5).replace(",","."),
                         onValueChange = { consumoVeiculo = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
@@ -192,7 +192,7 @@ class MainActivity : ComponentActivity() {
                     )
 
                     TextField(
-                        value = combustivel.take(5),
+                        value = combustivel.take(5).replace(",","."),
                         onValueChange = { combustivel = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
@@ -241,7 +241,7 @@ class MainActivity : ComponentActivity() {
                     )
 
                     TextField(
-                        value = precoCombustivel.take(5),
+                        value = precoCombustivel.take(5).replace(",","."),
                         onValueChange = { precoCombustivel = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
@@ -291,7 +291,7 @@ class MainActivity : ComponentActivity() {
                     )
 
                     TextField(
-                        value = distanciaKm.take(5),
+                        value = distanciaKm.take(5).replace(",","."),
                         onValueChange = { distanciaKm = it },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         colors = TextFieldDefaults.textFieldColors(
